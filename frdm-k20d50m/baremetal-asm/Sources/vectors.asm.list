@@ -1,0 +1,25 @@
+                                                .data                         
+                                                .section     .vectortable     
+
+                                                .extern      __SP_INIT        
+                                                .extern      main             
+                                                .extern      isr_default      
+
+0x00000000: 00000000                            .long        __SP_INIT        ; Initial SP value
+0x00000004: 00000000                            .long        main             ; 1, Reset
+0x00000008: 00000000                            .long        isr_default      ; 2, NMI
+0x0000000c: 00000000                            .long        isr_default      ; 3, Hard fault
+0x00000010: 00000000                            .long        isr_default      ; 4, Memory management fault
+0x00000014: 00000000                            .long        isr_default      ; 5, Bus fault
+0x00000018: 00000000                            .long        isr_default      ; 6, Usage fault
+0x0000001c: 00000000                            .long        isr_default      ; 7, Reserved
+0x00000020: 00000000                            .long        isr_default      ; 8, Reserved
+0x00000024: 00000000                            .long        isr_default      ; 9, Reserved
+0x00000028: 00000000                            .long        isr_default      ; 10, Reserved
+0x0000002c: 00000000                            .long        isr_default      ; 11, SV call
+0x00000030: 00000000                            .long        isr_default      ; 12, Debug monitor
+0x00000034: 00000000                            .long        isr_default      ; 13, Reserved
+0x00000038: 00000000                            .long        isr_default      ; 14, Pendable request for system service
+0x0000003c: 00000000                            .long        isr_default      ; 15, System tick timer
+
+                                                .end                          

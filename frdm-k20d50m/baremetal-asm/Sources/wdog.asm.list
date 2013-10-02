@@ -1,0 +1,30 @@
+                                                .text                         
+                                                .section     .text            
+
+                                                .global      wdog_unlock      
+                                                .global      wdog_disable     
+                             wdog_unlock                                      
+0x00000000: 2de90300                            push         {r0,r1}          
+
+0x00000004: 42f20e00                            movw         r0,#0x200E       
+0x00000008: c4f20500                            movt         r0,#0x4005       
+0x0000000c: 4cf22051                            movw         r1,#0xC520       
+0x00000010: a0f80010                            strh         r1,[r0,#0]       
+0x00000014: 4df62811                            movw         r1,#0xD928       
+0x00000018: a0f80010                            strh         r1,[r0,#0]       
+
+0x0000001c: bde80300                            pop          {r0,r1}          
+0x00000020: 7047                                bx           lr               
+
+                             wdog_disable                                     
+0x00000022: 2de90300                            push         {r0,r1}          
+
+0x00000026: 42f20000                            movw         r0,#0x2000       
+0x0000002a: c4f20500                            movt         r0,#0x4005       
+0x0000002e: 4ff0d201                            mov          r1,#0xD2         
+0x00000032: a0f80010                            strh         r1,[r0,#0]       
+
+0x00000036: bde80300                            pop          {r0,r1}          
+0x0000003a: 7047                                bx           lr               
+
+                                                .end                          

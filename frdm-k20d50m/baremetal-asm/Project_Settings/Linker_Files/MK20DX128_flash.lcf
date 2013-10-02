@@ -1,0 +1,42 @@
+MEMORY {
+m_interrupts  (RX) : ORIGIN = 0x00000000, LENGTH = 0x000000F8
+m_cfmprotrom  (RX) : ORIGIN = 0x00000400, LENGTH = 0x00000010
+m_text        (RX) : ORIGIN = 0x00000800, LENGTH = 0x0001F800
+m_data        (RW) : ORIGIN = 0x1FFFE000, LENGTH = 0x00004000
+}
+
+KEEP_SECTION { .vectortable }
+KEEP_SECTION { .cfmconfig }
+
+SECTIONS {
+
+.interrupts :
+{
+    __vector_table = .;
+    * (.vectortable)
+    . = ALIGN (0x4);
+} > m_interrupts
+
+.cfmprotect :
+{
+    *(.cfmconfig)
+    . = ALIGN (0x4);
+} > m_cfmprotrom
+
+.app_text: 
+{
+	ALIGNALL(4);
+   	* (.text)
+	.= ALIGN(0x8) ;
+	* (.rodata)
+	.= ALIGN(0x4) ;
+} > m_text
+
+.app_data:
+{
+   	* (.data)
+	.= ALIGN(0x4) ;
+} > m_data
+
+__SP_INIT = . + 0x00001000;
+}
