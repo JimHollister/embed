@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F100RB -DSTM32F10X_MD_VL -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Project\Master Workspace\CooCox -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Libraries\CMSIS\CM3\CoreSupport -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Utilities -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Project\Demo\inc -I..\..\..\..\..\dev\embed\stm32\stm32vldiscovery_package\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x">
+      <target file="stm32f10x_pwr.o" lastModified="141d327c243">
+         <source file="..\..\..\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c" lastModified="141d327b4d5"/>
+      </target>
+      <target file="stm32f10x_rcc.o" lastModified="141d32506b6">
+         <source file="..\..\..\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c" lastModified="141d2c7823b"/>
+      </target>
+      <target file="main.o" lastModified="141d32505eb">
+         <source file="..\..\..\..\..\Demo\src\main.c" lastModified="141d2ff31dc"/>
+      </target>
+      <target file="stm32f10x_it.o" lastModified="141d3250714">
+         <source file="..\..\..\..\..\Demo\src\stm32f10x_it.c" lastModified="141d2c782a8"/>
+      </target>
+   </processor>
+</history>

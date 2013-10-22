@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.7.4 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=demo.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\demo -TC:\CooCox\CoIDE\configuration\ProgramData\demo/arm-gcc-link.ld -g">
+      <target file="demo.elf" lastModified="141d327c427">
+         <source file="..\obj\stm32f10x_pwr.o" lastModified="141d327c243"/>
+         <source file="..\obj\main.o" lastModified="141d32505eb"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="141d32506b6"/>
+         <source file="..\obj\stm32f10x_it.o" lastModified="141d3250714"/>
+      </target>
+   </processor>
+</history>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F100RB -DSTM32F10X_MD_VL -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\dev\embed\stm32\workspace -I..\..\..\..\..\dev\embed\stm32\workspace\cmsis_boot -I..\..\..\..\..\dev\embed\stm32\workspace\stm_lib -I..\..\..\..\..\dev\embed\stm32\workspace\semihosting -I..\..\..\..\..\dev\embed\stm32\workspace\cmsis -I..\..\..\..\..\dev\embed\stm32\workspace\stm_lib\inc -I..\..\..\..\..\dev\embed\stm32">
+      <target file="startup_stm32f10x_md_vl.o" lastModified="141e2097392">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md_vl.c" lastModified="141d3324fc9"/>
+      </target>
+      <target file="syscalls.o" lastModified="141e20976de">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="141d358a05a"/>
+      </target>
+      <target file="printf.o" lastModified="141e20975f4">
+         <source file="..\..\..\stdio\printf.c" lastModified="141d3714665"/>
+      </target>
+      <target file="core_cm3.o" lastModified="141e20973e1">
+         <source file="..\..\..\cmsis\core_cm3.c" lastModified="141d3323413"/>
+      </target>
+      <target file="system_stm32f10x.o" lastModified="141e209743e">
+         <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="141d3324fc9"/>
+      </target>
+      <target file="main.o" lastModified="141e22989e2">
+         <source file="..\..\..\main.c" lastModified="141e22966f9"/>
+      </target>
+      <target file="stm32f10x_gpio.o" lastModified="141e20974cb">
+         <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="141d61e5710"/>
+      </target>
+      <target file="sh_cmd.o" lastModified="141e2097690">
+         <source file="..\..\..\semihosting\sh_cmd.s" lastModified="141d358be43"/>
+      </target>
+      <target file="semihosting.o" lastModified="141e2097354">
+         <source file="..\..\..\semihosting\semihosting.c" lastModified="141d3c1c06d"/>
+      </target>
+      <target file="stm32f10x_rcc.o" lastModified="141e2097680">
+         <source file="..\..\..\stm_lib\src\stm32f10x_rcc.c" lastModified="141d61e5720"/>
+      </target>
+   </processor>
+</history>

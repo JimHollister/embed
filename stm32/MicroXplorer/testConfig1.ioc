@@ -1,0 +1,9 @@
+#MicroXplorer Configuration settings - do not modify
+#Sat Oct 19 16:55:36 CDT 2013
+File.Version=1
+KeepUserPlacement=true
+Mcu.Family=STM32F1
+Mcu.IPNb=0
+Mcu.Name=STM32F100R(8-B)Tx
+Mcu.Package=LQFP64
+Mcu.PinsNb=0

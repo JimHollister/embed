@@ -1,0 +1,13 @@
+Configuration	testConfig1
+MicroXplorer 	3.2
+Date	10/19/2013
+MCU	STM32F100R(8-B)Tx
+
+
+
+PERIPHERALS	MODES	REMAP	FUNCTIONS	PINS
+
+
+
+Pin Nb	PINs	FUNCTIONs
+15	PA1	GPIO_Output

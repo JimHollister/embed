@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.7.4 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=first.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\first -TC:\CooCox\CoIDE\configuration\ProgramData\first/arm-gcc-link.ld -g">
+      <target file="first.elf" lastModified="141e2298bd6">
+         <source file="..\obj\semihosting.o" lastModified="141e2097354"/>
+         <source file="..\obj\startup_stm32f10x_md_vl.o" lastModified="141e2097392"/>
+         <source file="..\obj\core_cm3.o" lastModified="141e20973e1"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="141e209743e"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="141e20974cb"/>
+         <source file="..\obj\main.o" lastModified="141e22989e2"/>
+         <source file="..\obj\printf.o" lastModified="141e20975f4"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="141e2097680"/>
+         <source file="..\obj\sh_cmd.o" lastModified="141e2097690"/>
+         <source file="..\obj\syscalls.o" lastModified="141e20976de"/>
+      </target>
+   </processor>
+</history>
