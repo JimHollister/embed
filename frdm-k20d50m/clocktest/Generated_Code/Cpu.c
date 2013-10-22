@@ -7,7 +7,7 @@
 **     Version     : Component 01.009, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K20P64M50SF0RM Rev. 1, Oct 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2013-10-16, 16:03, # CodeGen: 2
+**     Date/Time   : 2013-10-11, 05:25, # CodeGen: 5
 **     Abstract    :
 **
 **     Settings    :
@@ -34,17 +34,12 @@
 
 /* MODULE Cpu. */
 
-/* MQX Lite include files */
-#include "mqxlite.h"
-#include "mqxlite_prv.h"
-#include "MQX1.h"
-#include "SystemTimer1.h"
+/* {Default RTOS Adapter} No RTOS includes */
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
 #include "Events.h"
-#include "mqx_tasks.h"
 #include "Cpu.h"
 
 #ifdef __cplusplus
@@ -75,7 +70,7 @@ void Cpu_SetBASEPRI(uint32_t Level);
 **         This method is internal. It is used by Processor Expert only.
 ** ===================================================================
 */
-void Cpu_INT_NMIInterrupt(void)
+PE_ISR(Cpu_INT_NMIInterrupt)
 {
   Cpu_OnNMIINT();
 }
@@ -141,18 +136,14 @@ void __init_hardware(void)
   SIM_SOPT2 &= (uint32_t)~(uint32_t)(SIM_SOPT2_PLLFLLSEL_MASK); /* Select FLL as a clock source for various peripherals */
   /* SIM_SOPT1: OSC32KSEL=3 */
   SIM_SOPT1 |= SIM_SOPT1_OSC32KSEL(0x03); /* LPO 1kHz oscillator drives 32 kHz clock for various peripherals */
-  /* PORTA_PCR18: ISF=0,MUX=0 */
-  PORTA_PCR18 &= (uint32_t)~(uint32_t)((PORT_PCR_ISF_MASK | PORT_PCR_MUX(0x07)));                                   
-  /* PORTA_PCR19: ISF=0,MUX=0 */
-  PORTA_PCR19 &= (uint32_t)~(uint32_t)((PORT_PCR_ISF_MASK | PORT_PCR_MUX(0x07)));                                   
   /* Switch to FEI Mode */
   /* MCG_C1: CLKS=0,FRDIV=0,IREFS=1,IRCLKEN=1,IREFSTEN=0 */
   MCG_C1 = MCG_C1_CLKS(0x00) |
            MCG_C1_FRDIV(0x00) |
            MCG_C1_IREFS_MASK |
            MCG_C1_IRCLKEN_MASK;       
-  /* MCG_C2: LOCRE0=0,??=0,RANGE0=2,HGO0=0,EREFS0=1,LP=0,IRCS=0 */
-  MCG_C2 = (MCG_C2_RANGE0(0x02) | MCG_C2_EREFS0_MASK);                                   
+  /* MCG_C2: LOCRE0=0,??=0,RANGE0=0,HGO0=0,EREFS0=0,LP=0,IRCS=0 */
+  MCG_C2 = MCG_C2_RANGE0(0x00);                                   
   /* MCG_C4: DMX32=0,DRST_DRS=0 */
   MCG_C4 &= (uint8_t)~(uint8_t)((MCG_C4_DMX32_MASK | MCG_C4_DRST_DRS(0x03)));                                   
   /* OSC0_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
@@ -210,7 +201,6 @@ void PE_low_level_init(void)
   #ifdef PEX_RTOS_INIT
     PEX_RTOS_INIT();                   /* Initialization of the selected RTOS. Macro is defined by the RTOS component. */
   #endif
-  /* {MQXLite RTOS Adapter} Set new interrupt vector (function handler and ISR parameter) */
       /* Initialization of the SIM module */
   /* PORTA_PCR4: ISF=0,MUX=7 */
   PORTA_PCR4 = (uint32_t)((PORTA_PCR4 & (uint32_t)~(uint32_t)(
@@ -253,6 +243,8 @@ void PE_low_level_init(void)
   /* Common initialization of the CPU registers */
   /* NVICIP8: PRI8=0 */
   NVICIP8 = NVIC_IP_PRI8(0x00);                                   
+  /* Enable interrupts of the given priority level */
+  Cpu_SetBASEPRI(0U);
 }
   /* Flash configuration field */
   __attribute__ ((section (".cfmconfig"))) const uint8_t _cfm[0x10] = {

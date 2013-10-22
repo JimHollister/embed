@@ -7,7 +7,7 @@
 **     Version     : Component 01.009, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K20P64M50SF0RM Rev. 1, Oct 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2013-10-16, 16:03, # CodeGen: 2
+**     Date/Time   : 2013-10-04, 09:25, # CodeGen: 2
 **     Abstract    :
 **
 **     Settings    :
@@ -66,7 +66,6 @@ extern "C" {
 #define CPU_CORE_CLK_HZ_CLOCK_CONFIG0   20971520U /* Value of the core/system clock frequency in the clock configuration 0 in Hz. */
 
 
-#define CPU_XTAL_CLK_HZ                 8000000U /* Value of the external crystal or oscillator clock frequency in Hz */
 #define CPU_INT_SLOW_CLK_HZ             32768U /* Value of the slow internal oscillator clock frequency in Hz  */
 #define CPU_INT_FAST_CLK_HZ             4000000U /* Value of the fast internal oscillator clock frequency in Hz  */
 
@@ -84,7 +83,7 @@ extern "C" {
 #define CPU_USB_CLK_HZ_CONFIG_0         0UL /* USB clock frequency in clock configuration 0 */
 #define CPU_PLL_FLL_CLK_HZ_CONFIG_0     20971520UL /* PLL/FLL clock frequency in clock configuration 0 */
 #define CPU_MCGIR_CLK_HZ_CONFIG_0       32768UL /* MCG internal reference clock frequency in clock configuration 0 */
-#define CPU_OSCER_CLK_HZ_CONFIG_0       8000000UL /* System OSC external reference clock frequency in clock configuration 0 */
+#define CPU_OSCER_CLK_HZ_CONFIG_0       0UL /* System OSC external reference clock frequency in clock configuration 0 */
 #define CPU_ERCLK32K_CLK_HZ_CONFIG_0    1000UL /* External reference clock 32k frequency in clock configuration 0 */
 #define CPU_MCGFF_CLK_HZ_CONFIG_0       16384UL /* MCG fixed frequency clock */
 
@@ -133,8 +132,8 @@ extern volatile uint8_t SR_lock;
 */
 void PE_low_level_init(void);
 
-/* {MQXLite RTOS Adapter} ISR function prototype */
-void Cpu_INT_NMIInterrupt(void);
+/* {Default RTOS Adapter} ISR function prototype */
+PE_ISR(Cpu_INT_NMIInterrupt);
 /*
 ** ===================================================================
 **     Method      :  Cpu_INT_NMIInterrupt (component MK20DX128EX5)
