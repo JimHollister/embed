@@ -19,16 +19,19 @@ void SysTick_Handler(void) {
 }
 
 void UsageFault_Handler(void) {
-	asm volatile("BKPT #01");
-	bool divByZero = false;
-	divByZero = (SCB->CFSR & (1ul << 25)) > 0;
+	CONTROL_Type control = (CONTROL_Type)__get_CONTROL();
+	IPSR_Type ipsr = (IPSR_Type)__get_IPSR();
 }
 
 int main(void)
 {
+	// This MCU support 4 bits of priority level. Configure these
+	// bits as 4 preempt priority levels and 4 sub-priority levels.
+	NVIC_SetPriorityGrouping(5);
+
     GPIO_InitTypeDef  GPIO_InitStructure;
 
-    // Enable the clock to GPIOC
+    // Enable the clock to GPIOC module
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
     /* Configure the GPIO_LED pin */
@@ -38,6 +41,17 @@ int main(void)
     GPIO_Init(GPIOC, &GPIO_InitStructure);
 
     GPIOC->ODR |= GPIO_Pin_9;
+
+    // Enable the clock to CRC module
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
+
+    // Take the CRC module out for a spin
+    CRC->DR = 0xA5A5;
+    CRC->DR = 0x5A5A;
+    CRC->CR = CRC_CR_RESET;
+    CRC->DR = 0x0001;
+    CRC->DR = 0x0000;
+    CRC->IDR = 0x15;
 
 //	SysTick_Config(0xFFFFFF);
 	SysTick_Config(0x700000);
@@ -55,12 +69,17 @@ int main(void)
 	uint32_t cnt = 0x3FFFFF;
 	while(cnt--) {};
 
-	// Enable usage fault on divide by zero
-	SCB->CCR |= SCB_CCR_DIV_0_TRP_Msk;
-
 	// Enable usage fault exception
 	SCB->SHCSR |= SCB_SHCSR_USGFAULTENA_Msk;
 
+	// Enable usage fault on divide by zero
+	SCB->CCR |= SCB_CCR_DIV_0_TRP_Msk;
+
+	__set_PRIMASK(0);
+	__set_FAULTMASK(0);
+	__set_BASEPRI(5);
+
+	// Divide by zero
 	uint8_t quo = 4/0;
 
     return 0;
