@@ -63,6 +63,8 @@
   */
 
 #include "stm32f10x.h"
+#include <stm32f10x_rcc.h>
+#include <stm32f10x_gpio.h>
 
 /**
   * @}
@@ -418,6 +420,26 @@ void SystemCoreClockUpdate (void)
   */
 static void SetSysClock(void)
 {
+	// Enabling MCO output for clock monitoring
+
+    // Enable the clock to the GPIOA module
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+
+    /* Configure GPIOA pin 8 as MCO clock output */
+    GPIO_InitTypeDef  GPIO_InitStructure;
+    GPIO_StructInit(&GPIO_InitStructure);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//    RCC_MCOConfig(RCC_MCO_NoClock);
+//    RCC_MCOConfig(RCC_MCO_HSI);
+//    RCC_MCOConfig(RCC_MCO_HSE);
+//    RCC_MCOConfig(RCC_MCO_PLLCLK_Div2);
+      RCC_MCOConfig(RCC_MCO_SYSCLK);
+
 #ifdef SYSCLK_FREQ_HSE
   SetSysClockToHSE();
 #elif defined SYSCLK_FREQ_24MHz

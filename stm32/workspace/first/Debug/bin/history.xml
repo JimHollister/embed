@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.4 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=first.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\first -TC:\CooCox\CoIDE\configuration\ProgramData\first/arm-gcc-link.ld -g">
-      <target file="first.elf" lastModified="141fef0db16">
-         <source file="..\obj\semihosting.o" lastModified="141fef0d589"/>
-         <source file="..\obj\startup_stm32f10x_md_vl.o" lastModified="141fef0d5c7"/>
-         <source file="..\obj\system_stm32f10x.o" lastModified="141fef0d625"/>
-         <source file="..\obj\stm32f10x_gpio.o" lastModified="141fef0d6a2"/>
-         <source file="..\obj\main.o" lastModified="141fef0d72f"/>
-         <source file="..\obj\printf.o" lastModified="141fef0d828"/>
-         <source file="..\obj\stm32f10x_rcc.o" lastModified="141fef0d8b5"/>
-         <source file="..\obj\sh_cmd.o" lastModified="141fef0d8c5"/>
-         <source file="..\obj\syscalls.o" lastModified="141fef0d913"/>
+      <target file="first.elf" lastModified="1458b5306de">
+         <source file="..\obj\semihosting.o" lastModified="1458b53017f"/>
+         <source file="..\obj\startup_stm32f10x_md_vl.o" lastModified="1458b5301ae"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="1458b53023b"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="1458b5302a8"/>
+         <source file="..\obj\main.o" lastModified="1458b530306"/>
+         <source file="..\obj\printf.o" lastModified="1458b530392"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="1458b53040f"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="1458b53049c"/>
+         <source file="..\obj\sh_cmd.o" lastModified="1458b5304ac"/>
+         <source file="..\obj\syscalls.o" lastModified="1458b5304ea"/>
       </target>
    </processor>
 </history>
